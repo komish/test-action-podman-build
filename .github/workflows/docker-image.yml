@@ -18,7 +18,7 @@ jobs:
     - name: Build Image
       run: |
         podman version
-        podman build -t testbuildneverbefore .
+        # podman build -t testbuildneverbefore .
         podman build --label quay.expires-after=3w -t testbuild3w .
         
         podman build --build-arg quay_expiration=1w -t testbuild1w .
@@ -29,8 +29,8 @@ jobs:
         
         podman build --build-arg quay_expiration=never -t testbuildneverexplicit .
 
-        echo "never - default value in containerfile - built before anything else - this works"
-        podman image inspect testbuildneverbefore | jq .[0].Labels
+        # echo "never - default value in containerfile - built before anything else - this works"
+        # podman image inspect testbuildneverbefore | jq .[0].Labels
 
         echo "3w labeled using podman - this doesn't work"
         podman image inspect testbuild3w | jq .[0].Labels
