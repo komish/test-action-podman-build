@@ -18,9 +18,9 @@ jobs:
     - name: Build Image
       run: |
         podman version
-        podman build --build-arg quay_expiration=1w -t testbuild .
-        podman image inspect testbuild
-        podman build --build-arg quay_expiration=2w -t testbuild2 .
-        podman image inspect testbuild2
-        podman build --label quay.expired-after=3w -t testbuild3 .
-        podman image inspect testbuild3
+        podman build --build-arg quay_expiration=1w -t testbuild1w .
+        podman build --build-arg quay_expiration=2w -t testbuild2w .
+        podman build --label quay.expired-after=3w -t testbuild3w .
+        podman image inspect testbuild1w | jq [0].Labels
+        podman image inspect testbuild2w | jq [0].Labels
+        podman image inspect testbuild3w | jq [0].Labels
