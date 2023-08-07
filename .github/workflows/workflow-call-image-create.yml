@@ -19,10 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-      with:
-        path: dispatched
     - name: Build the Docker image
-      working-directory: dispatched
       run: |
         podman version
         podman build --build-args quay_expiration=${{ inputs.expires }} -t ${{ inputs.name }}:${{ inputs.tag }} .
