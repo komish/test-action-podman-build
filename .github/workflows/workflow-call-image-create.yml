@@ -1,0 +1,26 @@
+name: WorkflowCallImageCreate
+
+on:
+  workflow_call:
+    inputs:
+      name:
+        required: true
+        type: string
+      tag:
+        required: true
+        type: string
+      expires:
+        required: false
+        type: string
+        default: never
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+        podman version
+        podman build --build-args quay_expiration=${{ inputs.expires }} -t ${{ inputs.name }}:${{ inputs.tag }} 
+        podman image inspect ${{ inputs.name }}:${{ inputs.tag }} | jq .[0].Labels
