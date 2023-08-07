@@ -22,5 +22,5 @@ jobs:
     - name: Build the Docker image
       run: |
         podman version
-        podman build --build-args quay_expiration=${{ inputs.expires }} -t ${{ inputs.name }}:${{ inputs.tag }} 
+        podman build --build-args quay_expiration=${{ inputs.expires }} -t ${{ inputs.name }}:${{ inputs.tag }} .
         podman image inspect ${{ inputs.name }}:${{ inputs.tag }} | jq .[0].Labels
