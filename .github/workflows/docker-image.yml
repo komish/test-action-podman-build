@@ -30,3 +30,15 @@ jobs:
         
         echo 2w
         podman image inspect testbuild2w | jq .[0].Labels
+
+    - uses: ./.github/workflows/workflow-call-image-create.yml
+      name: build neverexpire
+      with:
+        name: testbuild
+        tag: neverexpire
+    - uses: ./.github/workflows/workflow-call-image-create.yml
+      name: build 1wexpire
+      with:
+        name: testbuild
+        tag: 1w
+        expires: 1w
