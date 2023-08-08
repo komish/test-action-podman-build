@@ -1,0 +1,20 @@
+name: Ensure CI is Enabled
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CI_CONNECTED: false
+
+jobs:
+  check_connected:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check Environment variable
+      run: |
+        test "${CI_CONNECTED}" = "true" \
+          || echo "CI is Disconnected. Set CI_CONNECTED to true in GitHub's environment variables"
