@@ -8,11 +8,12 @@ on:
     branches: [ "main" ]
 
 jobs:
+  ensure_ci_enabled:
+    uses: ./.github/workflows/check-ci-enabled.yml
 
   build:
-
+    needs: ensure_ci_enabled
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Build Image
@@ -32,6 +33,7 @@ jobs:
         podman image inspect testbuild2w | jq .[0].Labels
 
   build-neverexpire:
+    needs: ensure_ci_enabled
     uses: ./.github/workflows/workflow-call-image-create.yml
     with:
       name: testexpiration
@@ -39,6 +41,7 @@ jobs:
     secrets: inherit
 
   build-withexpire:
+    needs: ensure_ci_enabled
     uses: ./.github/workflows/workflow-call-image-create.yml
     with:
       name: testexpiration
