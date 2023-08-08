@@ -37,7 +37,7 @@ jobs:
       id: push-image
       uses: redhat-actions/push-to-registry@v2
       with:
-        image: testexpiration
+        image: ${{ inputs.name }}
         tags: ${{ inputs.tag }}
         registry: quay.io/komish
         username: ${{ secrets.REGISTRY_BOT }}
