@@ -19,8 +19,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
+    
+    - name: Login to Container Registry
+      uses: redhat-actions/podman-login@v1
+      with:
+        registry: quay.io
+        username: ${{ secrets.REGISTRY_BOT }}
+        password: ${{ secrets.REGISTRY_TOKEN }}
+        
+    - name: Build the Container Image
       run: |
         podman version
         podman build --build-arg quay_expiration=${{ inputs.expires }} -t ${{ inputs.name }}:${{ inputs.tag }} .
         podman image inspect ${{ inputs.name }}:${{ inputs.tag }} | jq .[0].Labels
+
+    - name: Push Image
+      id: push-image
+      uses: redhat-actions/push-to-registry@v2
+      with:
+        image: testexpiration
+        tags: ${{ inputs.tag }}
+        registry: quay.io/komish
+        username: ${{ secrets.REGISTRY_BOT }}
+        password: ${{ secrets.REGISTRY_TOKEN }}
