@@ -11,10 +11,10 @@ env:
   CI_CONNECTED: false
 
 jobs:
-  check_connected:
+  fail_if_ci_disabled:
     runs-on: ubuntu-latest
     steps:
     - name: Check Environment variable
       run: |
         test "${CI_CONNECTED}" = "true" \
-          || echo "CI is Disconnected. Set CI_CONNECTED to true in GitHub's environment variables"
+          || { echo "CI is Disconnected. Set CI_CONNECTED to true in GitHub's environment variables" ; false ;}
