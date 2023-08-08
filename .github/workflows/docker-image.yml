@@ -34,12 +34,12 @@ jobs:
   build-neverexpire:
     uses: ./.github/workflows/workflow-call-image-create.yml
     with:
-      name: testbuild
+      name: testexpiration:neverexp
       tag: neverexpire
 
   build-withexpire:
     uses: ./.github/workflows/workflow-call-image-create.yml
     with:
-      name: testbuild
+      name: testexpiration:1w
       tag: 1w
       expires: 1w
