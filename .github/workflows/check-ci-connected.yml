@@ -13,5 +13,6 @@ jobs:
     steps:
     - name: Check Environment variable
       run: |
+        echo "The value of CI_CONNECTED IS=\"${CI_CONNECTED}\"."
         test "${CI_CONNECTED}" = "true" \
-          || { echo "CI is Disconnected. Set CI_CONNECTED to true in GitHub's environment variables" ; false ;}
+          || { echo "CI is Disconnected. Set CI_CONNECTED to true in GitHub's environment variables" ; exit 1 ;}
