@@ -7,6 +7,18 @@ name: Ensure CI is Enabled
 # to fail.
 #
 # https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository
+#
+# Example usage, assuming this workflow is local to your repository:
+#
+# jobs:
+#   ensure_ci_enabled:
+#     uses: ./.github/workflows/check-ci-enabled.yml
+#
+#   next_task:
+#     needs: ensure_ci_enabled
+#     runs-on: ubuntu-latest
+#     steps:
+#     - ...
 
 on:
   workflow_dispatch:
