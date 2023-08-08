@@ -36,6 +36,7 @@ jobs:
     with:
       name: testexpiration:neverexp
       tag: neverexpire
+    secrets: inherit
 
   build-withexpire:
     uses: ./.github/workflows/workflow-call-image-create.yml
@@ -43,3 +44,4 @@ jobs:
       name: testexpiration:1w
       tag: 1w
       expires: 1w
+    secrets: inherit
