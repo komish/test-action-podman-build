@@ -32,20 +32,14 @@ jobs:
         podman image inspect testbuild2w | jq .[0].Labels
 
   build-neverexpire:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: ./.github/workflows/workflow-call-image-create.yml
-      name: build neverexpire
-      with:
-        name: testbuild
-        tag: neverexpire
+    uses: ./.github/workflows/workflow-call-image-create.yml
+    with:
+      name: testbuild
+      tag: neverexpire
 
   build-withexpire:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: ./.github/workflows/workflow-call-image-create.yml
-      name: build 1wexpire
-      with:
-        name: testbuild
-        tag: 1w
-        expires: 1w
+    uses: ./.github/workflows/workflow-call-image-create.yml
+    with:
+      name: testbuild
+      tag: 1w
+      expires: 1w
