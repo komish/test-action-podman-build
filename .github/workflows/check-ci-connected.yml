@@ -7,9 +7,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  CI_CONNECTED: false
-
 jobs:
   fail_if_ci_disabled:
     runs-on: ubuntu-latest
