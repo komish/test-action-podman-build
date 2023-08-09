@@ -1,0 +1,14 @@
+name: Test CERTIFICATION_ENABLED
+
+# A developer convenience workflow.
+# Tests to see if the ci-enabled.yml workflow would pass based on
+# the current org/repo/env configuration.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test_certification_enabled:
+    uses: ./.github/workflows/ci-enabled.yml
+    with:
+      is-enabled: ${{ vars.CERTIFICATION_ENABLED }}
