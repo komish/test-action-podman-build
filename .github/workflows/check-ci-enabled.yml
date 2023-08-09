@@ -25,7 +25,7 @@ on:
   workflow_call:
 
 env:
-  CI_ENABLED: ${{ vars.CI_ENABLED }}
+  CI_ENABLED: ${{ vars.CUSTOM_VAR_CI_ENABLED }}
 
 jobs:
   fail_if_ci_disabled:
