@@ -38,4 +38,4 @@ jobs:
         test "${{ inputs.is-enabled }}" = "true" \
           || { echo "::error::Halting because this repo/org/env configuration has not explicitly enabled this CI."; \
             exit 1 ;}
-        echo "::info::CI is enabled!"
+        echo "::notice::CI is enabled!"
