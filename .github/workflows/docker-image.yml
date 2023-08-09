@@ -9,7 +9,7 @@ on:
 
 jobs:
   ensure_ci_enabled:
-    uses: ./.github/workflows/check-ci-enabled.yml
+    uses: ./.github/workflows/ci-enabled.yml
     with:
       is-enabled: ${{ vars.CUSTOM_VAR_CI_ENABLED }}
 
