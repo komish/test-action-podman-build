@@ -23,18 +23,23 @@ name: Ensure CI is Enabled
 on:
   workflow_dispatch:
   workflow_call:
+    inputs:
+      configvalue:
+        type: string
+        default: "false"
 
 env:
-  CI_ENABLED: ${{ vars.CUSTOM_VAR_CI_ENABLED }}
+  # This variable value is what comes from your repo/org/env configuration on GitHub.
+  CI_ENABLED: ${{ inputs.configvalue }}
 
 jobs:
   fail_if_ci_disabled:
     runs-on: ubuntu-latest
     steps:
-    - name: Check Environment variable
+    - name: Check environment variable
       run: |
         env | grep CI_ENABLED
         echo "The value of CI_ENABLED is '${{ env.CI_ENABLED }}'"
         test "${{ env.CI_ENABLED }}" = "true" \
-          || { echo "::error::Failing because the CI_ENABLED environment variable is not set to true for repo settings"; \
+          || { echo "::error::Halting because this repo/org/env configuration has not explicitly enabled this CI."; \
             exit 1 ;}

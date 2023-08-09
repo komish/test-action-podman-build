@@ -10,6 +10,8 @@ on:
 jobs:
   ensure_ci_enabled:
     uses: ./.github/workflows/check-ci-enabled.yml
+    with:
+      configvalue: ${{ vars.CI_ENABLED }}
 
   build:
     needs: ensure_ci_enabled
