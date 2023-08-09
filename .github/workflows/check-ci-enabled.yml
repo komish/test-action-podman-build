@@ -33,7 +33,7 @@ jobs:
     steps:
     - name: Check Environment variable
       run: |
-        printenv
+        printenv | grep CI_ENABLED
         echo "The value of CI_ENABLED is '${{ env.CI_ENABLED }}'"
         test "${{ env.CI_ENABLED }}" = "true" \
           || { echo "::error::Failing because the CI_ENABLED environment variable is not set to true for repo settings"; \
