@@ -11,7 +11,7 @@ jobs:
   ensure_ci_enabled:
     uses: ./.github/workflows/check-ci-enabled.yml
     with:
-      configvalue: ${{ vars.CUSTOM_VAR_CI_ENABLED }}
+      is-enabled: ${{ vars.CUSTOM_VAR_CI_ENABLED }}
 
   build:
     needs: ensure_ci_enabled

@@ -2,8 +2,8 @@ name: Ensure CI is Enabled
 # This workflow allows a project to disable workflows based on a repository or
 # organizational environment variable. 
 #
-# Create a repo or org environment variable with key CI_ENABLED and value true
-# for this workflow to succeed. Another other value should cause this workflow
+# Create a repo or org environment variable with its value set to 'true'
+# for this workflow to succeed. Any other value should cause this workflow
 # to fail.
 #
 # https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository
@@ -13,6 +13,8 @@ name: Ensure CI is Enabled
 # jobs:
 #   ensure_ci_enabled:
 #     uses: ./.github/workflows/check-ci-enabled.yml
+#     with:
+#       is-enabled: ${{ vars.CUSTOM_VAR_CI_ENABLED }}
 #
 #   next_task:
 #     needs: ensure_ci_enabled
@@ -21,10 +23,9 @@ name: Ensure CI is Enabled
 #     - ...
 
 on:
-  workflow_dispatch:
   workflow_call:
     inputs:
-      configvalue:
+      is-enabled:
         type: string
         default: "false"
 
