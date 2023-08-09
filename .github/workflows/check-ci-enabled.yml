@@ -31,7 +31,7 @@ on:
 
 env:
   # This variable value is what comes from your repo/org/env configuration on GitHub.
-  CI_ENABLED: ${{ inputs.configvalue }}
+  CI_ENABLED: ${{ inputs.is-enabled }}
 
 jobs:
   fail_if_ci_disabled:
