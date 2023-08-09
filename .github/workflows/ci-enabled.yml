@@ -33,8 +33,7 @@ jobs:
   fail_if_ci_disabled:
     runs-on: ubuntu-latest
     steps:
-    - name: Check environment variable
-      run: |
+      - run: |
         test "${{ inputs.is-enabled }}" = "true" \
           || { echo "::error::Halting because this repo/org/env configuration has not explicitly enabled this CI."; \
             exit 1 ;}
