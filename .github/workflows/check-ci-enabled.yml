@@ -27,7 +27,7 @@ on:
     inputs:
       is-enabled:
         type: string
-        default: "false"
+        required: true
 
 env:
   # This variable value is what comes from your repo/org/env configuration on GitHub.
