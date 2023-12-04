@@ -1,0 +1,15 @@
+name: TestContinueOnError
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Start
+      run: echo "Starting!"
+    - name: Fail
+      continue-on-error: true
+      run: exit 2
+    - name: End
+      run: echo "Ending!"
