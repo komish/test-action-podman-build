@@ -16,4 +16,7 @@ jobs:
       run: echo "Ending!"
     - name: OnlyOnFailure
       if: steps.will_fail.outcome == 'failure'
-      run: echo "It Failed"
+      run: echo "The outcome was failure"
+    - name: UseConclusion
+      if: steps.will_fail.conclusion == 'failure'
+      run: echo "The conclusion was also failure"
