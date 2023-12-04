@@ -9,7 +9,11 @@ jobs:
     - name: Start
       run: echo "Starting!"
     - name: Fail
+      id: will_fail
       continue-on-error: true
       run: exit 2
     - name: End
       run: echo "Ending!"
+    - name: OnlyOnFailure
+      if: steps.will_fail.outcome == 'failure'
+      run: echo "It Failed"
